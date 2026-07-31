@@ -7,15 +7,14 @@ Players have the choice between rendering the actual icon of the item they are w
 The default armor hud is disabled.
 
 <p align="center">
-  <img width="808" height="330" alt="grafik" src="https://github.com/user-attachments/assets/c14b2fec-856c-4a9a-8013-5335ab663b9f" />
+  <img width="766" height="153" alt="grafik" src="https://github.com/user-attachments/assets/bfd69c58-fe9b-4e03-94ae-3b1235d32d67" />
   <br>
   <i>Slot icons with durability tint.</i>
 </p>
 
 
-
 <p align="center">
-<img width="776" height="175" alt="grafik" src="https://github.com/user-attachments/assets/e27cad41-aed9-4bc7-a880-a53b3e43750e" />
+<img width="760" height="152" alt="grafik" src="https://github.com/user-attachments/assets/1e576ab4-7031-4937-8feb-b12151b255b2" />
   <br>
   <i>Slot icons with durability bar.</i>
 </p>
