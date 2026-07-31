@@ -2,6 +2,8 @@ package redart15.armorhud;
 
 import it.unimi.dsi.fastutil.ints.IntIntImmutablePair;
 import it.unimi.dsi.fastutil.ints.IntIntPair;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.hud.HudIngame;
 import net.minecraft.client.gui.hud.component.HudComponentMovable;
@@ -16,7 +18,6 @@ import net.minecraft.client.render.renderer.State;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.block.Blocks;
-import net.minecraft.core.entity.IArmorWearing;
 import net.minecraft.core.item.IArmorItem;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
@@ -32,6 +33,7 @@ import java.util.Random;
 
 import static redart15.armorhud.ArmorHudClient.MOD_ID;
 
+@Environment(EnvType.CLIENT)
 public class HudComponentArmorHud extends HudComponentMovable {
 	private final @NotNull Random random = new Random();
 	private static final IconCoordinate DEFAULT_ICON = TextureRegistry.getTexture(MOD_ID + ":gui/armorhud/default");

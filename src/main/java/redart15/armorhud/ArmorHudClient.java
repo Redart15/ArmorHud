@@ -1,6 +1,8 @@
 package redart15.armorhud;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.hud.component.ComponentAnchor;
 import net.minecraft.client.gui.hud.component.HudComponent;
 import net.minecraft.client.gui.hud.component.HudComponents;
@@ -21,6 +23,7 @@ import java.util.List;
 
 import static net.minecraft.client.gui.hud.component.HudComponents.HOTBAR;
 
+@Environment(EnvType.CLIENT)
 public class ArmorHudClient implements ClientModInitializer {
 	public static final String MOD_ID = HalpLibe.registerMod("armorhud", true);
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
