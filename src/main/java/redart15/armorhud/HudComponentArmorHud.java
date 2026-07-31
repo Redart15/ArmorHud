@@ -46,7 +46,7 @@ public class HudComponentArmorHud extends HudComponentMovable {
 
 
 	public HudComponentArmorHud(String key, LayoutSnap layout) {
-		this(key, 51, 12 + 2, layout);
+		this(key, 50, 14, layout);
 	}
 
 	public HudComponentArmorHud(String key, int xSize, int ySize, Layout layout) {
@@ -79,8 +79,8 @@ public class HudComponentArmorHud extends HudComponentMovable {
 				if (stack == null) {
 					continue;
 				}
-				int cx = x + 16 * column;
-				int cy = y + 16 * row + 2 * row;
+				int cx = x + 2 + 16 * column;
+				int cy = y + 2 + 16 * row;
 				this.renderItem(hud, stack, i, cx, cy);
 			}
 		}
