@@ -36,7 +36,7 @@ dependencies {
 	// Required at compilation & runtime
 	// included in builds as a runtime dependency
 	implementation(libs.loader)
-	implementation(libs.halplibe) // If you do not need halplibe you can delete this line
+//	implementation(libs.halplibe) // If you do not need halplibe you can delete this line
 
 	// Only required at compilation
 	// provides documentation, can be removed if that isn't needed

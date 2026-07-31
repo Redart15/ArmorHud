@@ -3,6 +3,7 @@ package redart15.armorhud;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.hud.component.ComponentAnchor;
 import net.minecraft.client.gui.hud.component.HudComponent;
 import net.minecraft.client.gui.hud.component.HudComponents;
@@ -12,11 +13,13 @@ import net.minecraft.client.gui.options.components.ToggleableOptionComponent;
 import net.minecraft.client.option.GameSettings;
 import net.minecraft.client.option.OptionBoolean;
 import net.minecraft.client.option.OptionEnum;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
+import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.util.helper.ITranslatable;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redart15.armorhud.mixin.HudComponentAccessor;
-import turniplabs.halplibe.HalpLibe;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +28,7 @@ import static net.minecraft.client.gui.hud.component.HudComponents.HOTBAR;
 
 @Environment(EnvType.CLIENT)
 public class ArmorHudClient implements ClientModInitializer {
-	public static final String MOD_ID = HalpLibe.registerMod("armorhud", true);
+	public static final String MOD_ID = "armorhud";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static HudComponent ArmorHud;
 	protected static OptionEnum<ArmorHudStyle> STYLE_ARMORHUD = GameSettings.register(new OptionEnum<>("armorHudStyle", ArmorHudStyle.class, ArmorHudStyle.TINT).setIsSlider(true));
@@ -62,6 +65,14 @@ public class ArmorHudClient implements ClientModInitializer {
 		public String getTranslationKey() {
 			return this.name().toLowerCase();
 		}
+	}
+
+	public static @NotNull String registerMod(@NotNull String modId, boolean preloadAssets) {
+		if (!preloadAssets && FabricLoader.getInstance().getEnvironmentType().equals(EnvType.CLIENT)) {
+			TextureRegistry.excludedNamespaces.add(modId);
+		}
+		Registries.NAMESPACES.register(modId, modId);
+		return modId;
 	}
 
 
