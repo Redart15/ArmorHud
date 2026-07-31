@@ -1,0 +1,4 @@
+options.verticalArmorHud=Vertical
+options.armorHudStyle=Style
+options.armorHudStyle.tint=Tinted
+options.armorHudStyle.bar=Icons

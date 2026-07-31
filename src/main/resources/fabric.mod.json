@@ -1,11 +1,11 @@
 {
 	"schemaVersion": 1,
-	"id": "examplemod",
+	"id": "armorhud",
 	"version": "${version}",
-	"name": "Example Mod",
-	"description": "This mod aims to help new BTA modders.",
+	"name": "ArmorHud",
+	"description": "8.0.1 changed the hud component for the armor, and it look awefull. This mod aims to change that.",
 	"authors": [
-		"Turnip Labs"
+		"Redart15"
 	],
 	"contact": {
 		"homepage": "",
@@ -15,12 +15,10 @@
 	"license": "CC0-1.0",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"turniplabs.examplemod.ExampleMod"
-		]
+		"client": ["redart15.armorhud.ArmorHudClient"]
 	},
 	"mixins": [
-		"examplemod.mixins.json"
+      "armorhud.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=${fabricloader}",
