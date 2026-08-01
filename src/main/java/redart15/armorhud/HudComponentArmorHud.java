@@ -37,6 +37,7 @@ import static redart15.armorhud.ArmorHudClient.MOD_ID;
 public class HudComponentArmorHud extends HudComponentMovable {
 	private final @NotNull Random random = new Random();
 	private static final IconCoordinate DEFAULT_ICON = TextureRegistry.getTexture(MOD_ID + ":gui/armorhud/default");
+	private static final IconCoordinate UNKNOWN = TextureRegistry.getTexture(MOD_ID + ":gui/armorhud/unknown");
 	private static final List<IconCoordinate> ICONS = new ArrayList<>();
 
 	static {
@@ -98,10 +99,10 @@ public class HudComponentArmorHud extends HudComponentMovable {
 
 	private void renderItem(Gui hud, ItemStack stack, int i, int cx, int cy) {
 		int color = Color.HSBtoRGB((float) getProgress(stack) / 255.0F / 3.0F, 1.0F, 1.0F);
-		GLRenderer.pushFrame();
 		ArmorHudClient.ArmorHudStyle style = ArmorHudClient.STYLE_ARMORHUD.value;
 		cy += this.adjustY(hud, stack, i);
 		if (!style.equals(ArmorHudClient.ArmorHudStyle.TINT)) {
+			GLRenderer.pushFrame();
 			GLRenderer.enableState(State.DEPTH_TEST);
 			GLRenderer.enableState(State.BLEND);
 			Lighting.enableInventoryLight();
@@ -112,26 +113,25 @@ public class HudComponentArmorHud extends HudComponentMovable {
 			GLRenderer.disableState(State.DEPTH_TEST);
 			GLRenderer.disableState(State.BLEND);
 			Lighting.disable();
-		} else {
-			boolean isArmor = stack.getItem() instanceof IArmorItem;
-			IconCoordinate icon = this.getNextIcon(i);
-			if(!isArmor){
-				icon = DEFAULT_ICON;
-			}
-			GLRenderer.setColor1i(color);
-			hud.drawGuiIcon(cx, cy, 16, 16, icon);
+			GLRenderer.popFrame();
+			return;
 		}
+		GLRenderer.pushFrame();
+		IconCoordinate icon = this.getNextIcon(i, stack);
+		GLRenderer.setColor1i(color);
+		hud.drawGuiIcon(cx, cy, 16, 16, icon);
 		GLRenderer.popFrame();
+
 	}
 
-	private @NotNull IconCoordinate getNextIcon(int i) {
-		if(i  > ICONS.size()){
-			i = i % ICONS.size();
+	private @NotNull IconCoordinate getNextIcon(int i, ItemStack stack) {
+		if (stack.getItem() instanceof IArmorItem<?> iArmorItem) {
+			if (iArmorItem.getArmorMaterial() == null) {
+				return DEFAULT_ICON; // useful to know durability but not the icon
+			}
+			return ICONS.get(i % ICONS.size());
 		}
-		if(i <= 0){
-			return DEFAULT_ICON;
-		}
-		return ICONS.get(i);
+		return UNKNOWN; // something went wrong
 	}
 
 	private int adjustY(Gui gui, ItemStack stack, int i) {
