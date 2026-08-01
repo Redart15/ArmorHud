@@ -117,15 +117,15 @@ public class HudComponentArmorHud extends HudComponentMovable {
 			return;
 		}
 		GLRenderer.pushFrame();
-		IconCoordinate icon = this.getNextIcon(i, stack);
-		GLRenderer.setColor1i(color);
+		IconCoordinate icon = this.getNextIcon(i, color, stack);
 		hud.drawGuiIcon(cx, cy, 16, 16, icon);
 		GLRenderer.popFrame();
 
 	}
 
-	private @NotNull IconCoordinate getNextIcon(int i, ItemStack stack) {
+	private @NotNull IconCoordinate getNextIcon(int i, int color, ItemStack stack) {
 		if (stack.getItem() instanceof IArmorItem<?> iArmorItem) {
+			GLRenderer.setColor1i(color);
 			if (iArmorItem.getArmorMaterial() == null) {
 				return DEFAULT_ICON; // useful to know durability but not the icon
 			}
