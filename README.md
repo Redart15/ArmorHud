@@ -14,7 +14,7 @@ The default armor hud is disabled.
 
 
 <p align="center">
-<img width="760" height="152" alt="grafik" src="https://github.com/user-attachments/assets/1e576ab4-7031-4937-8feb-b12151b255b2" />
+<img width="789" height="153" alt="grafik" src="https://github.com/user-attachments/assets/1b075d90-7409-4d30-bd21-b7f9c2d13840" />
   <br>
   <i>Slot icons with durability bar.</i>
 </p>
